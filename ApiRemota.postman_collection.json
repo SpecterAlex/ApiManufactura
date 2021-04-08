@@ -1,0 +1,1267 @@
+{
+	"info": {
+		"_postman_id": "12b32177-9df6-4dad-8ad6-4413e033e000",
+		"name": "ApiRemota",
+		"description": "metodos para api remota stackcloud",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AuthController",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"miguel.prado@stackcloud.com.mx\",\n    \"password\": \"123456\",\n    \"remember_me\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.53.170.84/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": "metodo para generar personal access token y consumir end points (solo se envian parametros emal y password)\n\n--el token expira al finalizar el dia\n--si se envia el parametro remember:me en true el token expira en una semana"
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiOTRlN2JlZGJiNDQ3MGU0NTkzNzcyMmZmMTM1NTA0MTViODc4N2M0YWQwYmVkZDlhZGFiMzRhNmE4MjEyYTRkNjY4YTg2MjNmOGNjNzc0NjkiLCJpYXQiOiIxNjE0MTI3MjQ0LjY4NzE2OCIsIm5iZiI6IjE2MTQxMjcyNDQuNjg3MTcyIiwiZXhwIjoiMTY0NTY2MzI0NC42ODQzNDkiLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.IqsfZL_CosRAY8SyuisvZFgCgw2jWZHyRwjI7VPkuz4lOBoqRctTLogqzxRhhmabw3cTf47PCl5q6XoC8JbAaJouZkjeXIKnMM9Q-oSV8hLe9OeNZlRE2Da_pA3bKEVBut0z259FNs-CTH1xD2Vtqw5Z3Z-gZyFPp_otZKbWCZAEUEgmIO69B9H33Ec66lwmpo6pJVNXMuxJJgjLjnvLNf8oIXaM09nUn21xxkXzstStmZg6MnvnzJVVwvkY926Bo_tott3ta6lo5c4Tj2gMeopvVzOYx6Jq4kdp3MR6cOHY0-_jzAyZvzg7l8M3Fp-IW3G6xENGu6qQRNDLtiSyhHBI3V4Owd_7TJGWvzwS-6zIHsWsam4alPUw21ati1xWC5oMaV8NBJC7Lz7Y9sBJl4PG5rgHPrYUf2AXPXucLkXi7cWt7RGOy76_drFxJcWX2kMvzRT8sSYc_KR8wdW0pL4QmYPK9ymSVXBt6oSfDd6yJHt-E68gwHQyiq3XdbxBv-DnfZ4blMI-nMzf2rRlhWt_5n5qgfSi5I4GGYawRfhrbOIIBFDidPg8TDRzd2VMKStPG-S-IUYLNroMxbTUDfzj5k0OAYeXGXFZNQCQXNlQNx2hR7HkYvk7N-ZcN6VdzmhSlcqjyBE-RFhPqbo5_CGolPFcIlmgDAY129iG2KM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/auth/logout",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						},
+						"description": "Metodo Get encargado de revocar el token emitido en login\n\n--es un metodo protegido por lo cual se debe pasar como key Authorization el token para su revocacion\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UsersController",
+			"item": [
+				{
+					"name": "get all users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer "
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/users",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Juan Ramon\",\n    \"last_name\": \"Sanchez Sanchez\",\n    \"email\": \"example@local.host\",\n    \"phone_number\": \"8180758564\",\n    \"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "http://192.53.170.84/api/users",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show one user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/users/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "au",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Juan Ramon\",\n    \"last_name\": \"Sanchez Sanchez\",\n    \"email\": \"example@local.host\",\n    \"phone_number\": \"8180758564\",\n    \"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "http://192.53.170.84/api/users/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/users/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AddressController",
+			"item": [
+				{
+					"name": "get all addresses",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer "
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/addresses",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create address",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"street\": \"Calle siempre viva\",\n    \"number\": \"742\",\n    \"suburb_id\": 489,\n    \"phone_number\": \"8110325021\",\n    \"customer_id\": \"2\",\n    \"invoice\" : false\n}"
+						},
+						"url": {
+							"raw": "http://192.53.170.84/api/addresses",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show one address",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer "
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/addresses/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"addresses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update address",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "au",
+								"type": "text",
+								"value": "Bearer"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"street\": \"Calle siempre viva\",\n    \"number\": \"742\",\n    \"suburb_id\": 489,\n    \"phone_number\": \"8110325021\",\n    \"customer_id\": \"2\",\n    \"invoice\" : false\n}"
+						},
+						"url": {
+							"raw": "http://192.53.170.84/api/addresses/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"addresses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete address",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/addresses/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"addresses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CustomerController",
+			"item": [
+				{
+					"name": "get all customers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer "
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/customers",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Jose Cuau\",\n    \"rfc\": \"CACJ0500293\",\n    \"email\": \"prueba@local.host\",\n    \"phone_number\": \"8180569675\",\n    \"contact_name\": \"Pancho Perez\",\n    \"contact_number\": \"8110987856\"\n}"
+						},
+						"url": {
+							"raw": "http://192.53.170.84/api/customers",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show one customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer "
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/customers/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"customers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update customer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "au",
+								"type": "text",
+								"value": "Bearer"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Jose Cuau\",\n    \"rfc\": \"CACJ0500293\",\n    \"email\": \"prueba@local.host\",\n    \"phone_number\": \"8180569675\",\n    \"contact_name\": \"Pancho Perez\",\n    \"contact_number\": \"8110987856\"\n}"
+						},
+						"url": {
+							"raw": "http://192.53.170.84/api/customers/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"customers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete customer",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/customers/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"customers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Catalogs",
+			"item": [
+				{
+					"name": "get all cities",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOWVmMDA1YmIyMWY2ZWMzNWVmZmY1ZTJhZGIyNTQzYzJiMmNjNDJkZWRhZTQ3OTBiYjIzYjgyMGMzNDM0YWZhMjQyMmZhMzZlMWEzNTA4ODciLCJpYXQiOiIxNjE0NzA3MjY5LjYyMjE3MCIsIm5iZiI6IjE2MTQ3MDcyNjkuNjIyMTc2IiwiZXhwIjoiMTY0NjI0MzI2OS42MTU5MzkiLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.eYjpdlGX1vRKPHbHSnvpnAOn0I8t8W7dpOqlKjZ3Cgx_qNBNrFFBoqdKHWUfK6hMhxiwA4RUdA_5kRWBfcTcM7L4PXutgVcztkrLvdXi0R_GFBc9LBELEFZC3hxMv-vpcIhnxn9goiPfpWkrQiPUU1OcdtmQPVZPs7varWNiNb6BpmwCqO1xKurPXEQjQVLENs1DunFJ4A90xbq1SOivxotMq2gwKlxtE7N2xvcWJZ_GkAPUGLVYTg9QQZ_M7a3hGCUbcZCI1mP0bsDXq6tqo3OrLSLVMCxc2lGvJYn4rpqGXWN5UUGtgdpU5wBzoHj5QVXFexUu5D4okjlQV-YUUsvYBRl2x8-zSrXS7A3xUeom0Uxng9kgC6A7cALqRX5zOqw3QEXVKAhg6h84Jhv__QutuYmRE_92ZsfEQzkQHpNt_8SaM720VA9C94t4Gb1YKyAMapsDxaUo0j6XYAs7GM_5O655X3OyZuu7Sor26BP1xC_IwFEOFYyg17yQ06OCJOq6tlLkXhqGRh4b0ukdJca4-omTs44ZU0polHeLlHEAo58L5b0XuFGpMJuGUKCOb9PPhBjFEtn0m8QfiQkykCtQOl-tTXOfukUoxI2pvk_jIcHyEgpIPZOyzEe-GfQELze4S4Yqnbe-WPo55jdVmmBSdZzo0FNXc0aNzNxkv9w"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/catalogs/cities",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"catalogs",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show one customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOWVmMDA1YmIyMWY2ZWMzNWVmZmY1ZTJhZGIyNTQzYzJiMmNjNDJkZWRhZTQ3OTBiYjIzYjgyMGMzNDM0YWZhMjQyMmZhMzZlMWEzNTA4ODciLCJpYXQiOiIxNjE0NzA3MjY5LjYyMjE3MCIsIm5iZiI6IjE2MTQ3MDcyNjkuNjIyMTc2IiwiZXhwIjoiMTY0NjI0MzI2OS42MTU5MzkiLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.eYjpdlGX1vRKPHbHSnvpnAOn0I8t8W7dpOqlKjZ3Cgx_qNBNrFFBoqdKHWUfK6hMhxiwA4RUdA_5kRWBfcTcM7L4PXutgVcztkrLvdXi0R_GFBc9LBELEFZC3hxMv-vpcIhnxn9goiPfpWkrQiPUU1OcdtmQPVZPs7varWNiNb6BpmwCqO1xKurPXEQjQVLENs1DunFJ4A90xbq1SOivxotMq2gwKlxtE7N2xvcWJZ_GkAPUGLVYTg9QQZ_M7a3hGCUbcZCI1mP0bsDXq6tqo3OrLSLVMCxc2lGvJYn4rpqGXWN5UUGtgdpU5wBzoHj5QVXFexUu5D4okjlQV-YUUsvYBRl2x8-zSrXS7A3xUeom0Uxng9kgC6A7cALqRX5zOqw3QEXVKAhg6h84Jhv__QutuYmRE_92ZsfEQzkQHpNt_8SaM720VA9C94t4Gb1YKyAMapsDxaUo0j6XYAs7GM_5O655X3OyZuu7Sor26BP1xC_IwFEOFYyg17yQ06OCJOq6tlLkXhqGRh4b0ukdJca4-omTs44ZU0polHeLlHEAo58L5b0XuFGpMJuGUKCOb9PPhBjFEtn0m8QfiQkykCtQOl-tTXOfukUoxI2pvk_jIcHyEgpIPZOyzEe-GfQELze4S4Yqnbe-WPo55jdVmmBSdZzo0FNXc0aNzNxkv9w"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/customers/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"customers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show suburbs by zipcode",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOWVmMDA1YmIyMWY2ZWMzNWVmZmY1ZTJhZGIyNTQzYzJiMmNjNDJkZWRhZTQ3OTBiYjIzYjgyMGMzNDM0YWZhMjQyMmZhMzZlMWEzNTA4ODciLCJpYXQiOiIxNjE0NzA3MjY5LjYyMjE3MCIsIm5iZiI6IjE2MTQ3MDcyNjkuNjIyMTc2IiwiZXhwIjoiMTY0NjI0MzI2OS42MTU5MzkiLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.eYjpdlGX1vRKPHbHSnvpnAOn0I8t8W7dpOqlKjZ3Cgx_qNBNrFFBoqdKHWUfK6hMhxiwA4RUdA_5kRWBfcTcM7L4PXutgVcztkrLvdXi0R_GFBc9LBELEFZC3hxMv-vpcIhnxn9goiPfpWkrQiPUU1OcdtmQPVZPs7varWNiNb6BpmwCqO1xKurPXEQjQVLENs1DunFJ4A90xbq1SOivxotMq2gwKlxtE7N2xvcWJZ_GkAPUGLVYTg9QQZ_M7a3hGCUbcZCI1mP0bsDXq6tqo3OrLSLVMCxc2lGvJYn4rpqGXWN5UUGtgdpU5wBzoHj5QVXFexUu5D4okjlQV-YUUsvYBRl2x8-zSrXS7A3xUeom0Uxng9kgC6A7cALqRX5zOqw3QEXVKAhg6h84Jhv__QutuYmRE_92ZsfEQzkQHpNt_8SaM720VA9C94t4Gb1YKyAMapsDxaUo0j6XYAs7GM_5O655X3OyZuu7Sor26BP1xC_IwFEOFYyg17yQ06OCJOq6tlLkXhqGRh4b0ukdJca4-omTs44ZU0polHeLlHEAo58L5b0XuFGpMJuGUKCOb9PPhBjFEtn0m8QfiQkykCtQOl-tTXOfukUoxI2pvk_jIcHyEgpIPZOyzEe-GfQELze4S4Yqnbe-WPo55jdVmmBSdZzo0FNXc0aNzNxkv9w",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/catalogs/zipcodes/66059",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"catalogs",
+								"zipcodes",
+								"66059"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProductController",
+			"item": [
+				{
+					"name": "get all products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer "
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/products",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Juan Ramon\",\n    \"last_name\": \"Sanchez Sanchez\",\n    \"email\": \"example@local.host\",\n    \"phone_number\": \"8180758564\",\n    \"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "http://192.53.170.84/api/users",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show one product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/users/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "au",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Juan Ramon\",\n    \"last_name\": \"Sanchez Sanchez\",\n    \"email\": \"example@local.host\",\n    \"phone_number\": \"8180758564\",\n    \"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "http://192.53.170.84/api/users/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/users/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProductionLineController",
+			"item": [
+				{
+					"name": "get all production lines",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer "
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/addresses",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create production line",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"street\": \"Calle siempre viva\",\n    \"number\": \"742\",\n    \"suburb_id\": 489,\n    \"phone_number\": \"8110325021\",\n    \"customer_id\": \"2\",\n    \"invoice\" : false\n}"
+						},
+						"url": {
+							"raw": "http://192.53.170.84/api/addresses",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show one production line",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer "
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/addresses/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"addresses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update production line",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "au",
+								"type": "text",
+								"value": "Bearer"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"street\": \"Calle siempre viva\",\n    \"number\": \"742\",\n    \"suburb_id\": 489,\n    \"phone_number\": \"8110325021\",\n    \"customer_id\": \"2\",\n    \"invoice\" : false\n}"
+						},
+						"url": {
+							"raw": "http://192.53.170.84/api/addresses/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"addresses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete production line",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/addresses/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"addresses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProductionStationController",
+			"item": [
+				{
+					"name": "get all production stations",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer "
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/customers",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create production station",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Jose Cuau\",\n    \"rfc\": \"CACJ0500293\",\n    \"email\": \"prueba@local.host\",\n    \"phone_number\": \"8180569675\",\n    \"contact_name\": \"Pancho Perez\",\n    \"contact_number\": \"8110987856\"\n}"
+						},
+						"url": {
+							"raw": "http://192.53.170.84/api/customers",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show one production station",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer "
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/customers/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"customers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update production station",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "au",
+								"type": "text",
+								"value": "Bearer"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Jose Cuau\",\n    \"rfc\": \"CACJ0500293\",\n    \"email\": \"prueba@local.host\",\n    \"phone_number\": \"8180569675\",\n    \"contact_name\": \"Pancho Perez\",\n    \"contact_number\": \"8110987856\"\n}"
+						},
+						"url": {
+							"raw": "http://192.53.170.84/api/customers/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"customers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete production station",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://192.53.170.84/api/customers/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"53",
+								"170",
+								"84"
+							],
+							"path": [
+								"api",
+								"customers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
